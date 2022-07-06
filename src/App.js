@@ -1,25 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import {React, useCallback} from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
 
-function App() {
+export default function App() {
+  var historyRef
+  function Home() {
+    return <h2>Home</h2>;
+  }
+  
+  function Reminders() {
+    return <h2>Reminders</h2>;
+  }
+  function Patients() {
+    historyRef = useHistory();
+    return (
+    <div>
+      <h2>Patients</h2>
+      <button onClick={myPatients}>My Patients</button>
+      <button onClick={allPatients}>All Patients</button>
+    </div>);
+  }
+  
+  const myPatients = ()=>{
+    historyRef.push("/patients/mypatients")
+    console.log("myPatients")
+  }
+  
+  const allPatients = ()=>{
+    historyRef.push("/patients/allpatients")
+    console.log("allPatients")
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/reminders">Reminders</Link>
+            </li>
+            <li>
+              <Link to="/patients/mypatients">Patients</Link>
+            </li>
+          </ul>
+        </nav>
 
-export default App;
+        <Switch>
+          <Route path="/reminders">
+            <Reminders />
+          </Route>
+          <Route path="/patients/mypatients">
+            <Patients />
+          </Route>
+          <Route path="/patients/allpatients">
+            <Patients />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+          
+        </Switch>
+      </div>
+    </Router>
+  ); 
+}
