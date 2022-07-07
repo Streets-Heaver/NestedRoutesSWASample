@@ -7,6 +7,8 @@ import {
   useHistory,
   Redirect
 } from "react-router-dom";
+import history from "./history";
+import "./assets/App.css"
 
 export default function App() {
   var historyRef
@@ -39,7 +41,7 @@ export default function App() {
 
 
   return (
-    <Router basename="/saleswardsample/">
+    <Router history={history} basename="/saleswardsample/">
       <div>
         <nav>
           <ul>
