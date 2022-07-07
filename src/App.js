@@ -4,7 +4,8 @@ import {
   Switch,
   Route,
   Link,
-  useHistory
+  useHistory,
+  Redirect
 } from "react-router-dom";
 
 export default function App() {
@@ -64,8 +65,11 @@ export default function App() {
           <Route path="/patients/allpatients">
             <Patients />
           </Route>
-          <Route path="/">
+          <Route path="/home">
             <Home />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
           </Route>
           
         </Switch>
