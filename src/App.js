@@ -39,7 +39,7 @@ export default function App() {
 
 
   return (
-    <Router>
+    <Router basename="/saleswardsample/">
       <div>
         <nav>
           <ul>
