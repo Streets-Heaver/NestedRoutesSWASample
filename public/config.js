@@ -1,0 +1,3 @@
+var globalConfig = {
+ pathname: "/saleswardsample/"
+};
